@@ -17,8 +17,7 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 });
 
 
-let TorontNeighbothoodData = "https://raw.githubusercontent.com/kanggg007/Mapping_Earthequakes/mapping_GeoJSON_LineStrings/Mapping_GeoJSON_Points/torontoRoutes.json";
-
+let TorontNeighbothoodData = "https://raw.githubusercontent.com/kanggg007/Mapping_Earthequakes/Mapping_GeoJSON_Polygons/Mapping_GeoJSON_Polygons/torontoNeighborhoods.json"
 
 let map = L.map('mapid').setView([30, 30], 2);
 
@@ -40,9 +39,8 @@ streets.addTo(map);
 d3.json(TorontNeighbothoodData).then(function(data) {
     console.log(data);
   // Creating a GeoJSON layer with the retrieved data.
-  L.geojson(data,{
+  L.geoJson(data,{
       onEachFeature: function(feature, layer){
-          layer.bindPopup("<h3> Neighboorhood:" + feature.properties.AREA_NAME + "</h3>");
-      }
+          layer.bindPopup("<h3> Neighboorhood:" + feature.properties.AREA_NAME + "</h3>")}
   }).addTo(map);
 });
