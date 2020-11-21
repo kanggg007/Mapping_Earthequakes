@@ -17,7 +17,7 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 });
 
 
-let airportData = "https://raw.githubusercontent.com/kanggg007/Mapping_Earthequakes/Mapping_geojson/Mapping_GeoJSON_Points/majorAirports.json";
+let torontoData = "https://raw.githubusercontent.com/kanggg007/Mapping_Earthequakes/Mapping_geojson/Mapping_GeoJSON_Points/torontoRoutes.json";
 
 
 let map = L.map('mapid').setView([30, 30], 2);
@@ -33,13 +33,8 @@ L.control.layers(baseMaps).addTo(map);
 
 streets.addTo(map);
 
-d3.json(airportData).then(function(data) {
+d3.json(torontoData).then(function(data) {
     console.log(data);
-    L.geoJson(data,{
-        onEachFeature: function(feature, layer){
-            console.log(layer);
-            layer.bindPopup('<h2>' +'Airport Code: '+feature.properties.faa+'</h2><p> Airport Name: '+feature.properties.name+'</p>')
-        
-        }
-        }).addTo(map);
-})
+  // Creating a GeoJSON layer with the retrieved data.
+  L.geoJson(data).addTo(map);
+});
